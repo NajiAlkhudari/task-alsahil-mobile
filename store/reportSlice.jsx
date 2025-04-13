@@ -12,7 +12,7 @@ export const fetchDataUser = createAsyncThunk("report/fetchDataUser", async (id,
   }
 
   try {
-    const response = await axios.get(`http://tasklog.runasp.net/api/Report?id=${id}`, {
+    const response = await axios.get(`https://tasklog.premiumasp.net/api/Report?id=${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

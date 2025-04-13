@@ -13,7 +13,7 @@ export const detail = createAsyncThunk("me/detail", async (_, thunkAPI) => {
 
 
   try {
-    const response = await axios.get('http://tasklog.runasp.net/api/Auth/Me', {
+    const response = await axios.get('https://tasklog.premiumasp.net/api/Auth/Me', {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

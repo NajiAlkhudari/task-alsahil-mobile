@@ -11,7 +11,7 @@ export const postVisit = createAsyncThunk(
     }
     try {
       const response = await axios.post(
-        "http://tasklog.runasp.net/api/Visit",
+        "https://tasklog.premiumasp.net/api/Visit",
         postData,
         {
           headers: {

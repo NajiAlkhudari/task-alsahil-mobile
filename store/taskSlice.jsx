@@ -12,7 +12,7 @@ export const fetchTask = createAsyncThunk(
         throw new Error("Token not found");
       }
 
-      const response = await axios.get('http://tasklog.runasp.net/api/Task', {
+      const response = await axios.get('https://tasklog.premiumasp.net/api/Task', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
