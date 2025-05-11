@@ -28,12 +28,11 @@ const Avatar = ({ size = 50, source, borderColor = '#ccc', borderWidth = 2 }) =>
         )}
       </TouchableOpacity>
 
-      {/* القائمة المنبثقة */}
       <Modal visible={isMenuVisible} transparent={true} animationType="fade">
         <Pressable style={styles.modalOverlay} onPress={toggleMenu}>
           <View style={styles.menuContainer}>
             <Pressable style={styles.menuItem} onPress={() => { logout(); toggleMenu(); }}>
-              <Text style={styles.menuText}>Logout</Text>
+              <Text style={styles.menuText}>تسجيل خروج</Text>
             </Pressable>
           </View>
         </Pressable>

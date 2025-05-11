@@ -1,10 +1,12 @@
 import { useRouter } from 'expo-router';
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, StatusBar ,Image } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, StatusBar, Image } from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Localization from 'expo-localization'; 
 
 export default function Index() {
   const router = useRouter();
+  const direction = Localization.isRTL ? 'rtl' : 'ltr';
 
   useEffect(() => {
     const checkAuthStatus = async () => {
@@ -12,33 +14,32 @@ export default function Index() {
         const token = await AsyncStorage.getItem("token");
 
         if (token) {
-          router.replace("/home"); 
+          router.replace("/home");
         } else {
-          router.replace("/(auth)/login"); 
+          router.replace("/(auth)/login");
         }
       } catch (error) {
         console.error("Error checking auth status:", error);
-        router.replace("/(auth)/login"); 
+        router.replace("/(auth)/login");
       }
     };
-    setTimeout(() => {
-      checkAuthStatus();
-    }, 1000);
+
+    checkAuthStatus();
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor="#1769aa" barStyle="light-content" />
+    <SafeAreaView style={[styles.container, { writingDirection: direction }]}>
+      <StatusBar backgroundColor="#024a70" barStyle="light-content" />
 
       <View style={styles.contentContainer}>
         <View style={styles.topSection}>
-          <Image source={require('../assets/images/splash.png')}  />
-          <Text style={styles.text}>Task Log</Text>
+          <Image source={require('../assets/images/splash.png')} style={styles.splashImage} />
+          <Text style={[styles.text, { textAlign: direction === 'rtl' ? 'right' : 'left' }]}>Task Log</Text>
         </View>
 
         <View style={styles.bottomSection}>
-          <Text style={styles.text1}>from</Text>
-          <Text style={styles.text1}>AlSahil</Text>
+          <Text style={[styles.text1, { textAlign: 'center' }]}>from</Text>
+          <Text style={[styles.text1, { textAlign: 'center' }]}>AlSahil</Text>
         </View>
       </View>
     </SafeAreaView>
@@ -48,21 +49,26 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1769aa',
+    backgroundColor: '#024a70',
   },
   contentContainer: {
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 20, 
+    paddingVertical: 20,
   },
   topSection: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%', 
+  },
+  splashImage: {
   },
   bottomSection: {
-    marginBottom: 20, 
+    marginBottom: 20,
+    width: '100%', 
+    alignItems: 'center', 
   },
   text: {
     fontSize: 26,
@@ -72,7 +78,7 @@ const styles = StyleSheet.create({
   text1: {
     fontSize: 12,
     color: '#ffffff',
+    fontWeight: 'semibold',
     textAlign: 'center', 
-    fontWeight:'semibold'
   },
 });

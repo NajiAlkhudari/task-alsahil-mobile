@@ -4,13 +4,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const login = createAsyncThunk(
   "auth/login",
-  async ({ email, password }, { rejectWithValue }) => {
+  async ({ userName, password }, { rejectWithValue }) => {
     try {
   
 
       const response = await axios.post(
         'https://tasklog.premiumasp.net/api/Auth/login',
-        { email, password },
+        { userName, password },
         {
           headers: {
              'Content-Type': 'application/json' 

@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "task-mobile",
+    "name": "taskLog",
     "slug": "task-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -25,15 +25,7 @@
     },
     "plugins": [
       "expo-router",
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/images/react-logo@3x.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
-        }
-      ]
+      "expo-localization"
     ],
     "experiments": {
       "typedRoutes": true

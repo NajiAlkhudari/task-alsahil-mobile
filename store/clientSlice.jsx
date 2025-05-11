@@ -30,6 +30,40 @@ export const fetchClient = createAsyncThunk(
 );
 
 
+
+export const postClient = createAsyncThunk(
+  "clients/postClient",
+  async (postData, { rejectWithValue }) => {
+    try {
+      const token = await AsyncStorage.getItem("token");
+      
+      if (!token) {
+        throw new Error("Token not found");
+      }
+
+      const response = await axios.post(
+        'https://tasklog.premiumasp.net/api/Client',
+        postData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      if (!response.data.success) {
+        throw new Error("Failed to post data");
+      }
+
+      return response.data.data;  
+    } catch (error) {
+      return rejectWithValue(error.response ? error.response.data.message : error.message);
+    }
+  }
+);
+
+
 const clientSlice = createSlice({
   name: "clients",
   initialState: {
@@ -52,6 +86,19 @@ const clientSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })       
+      .addCase(postClient.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(postClient.fulfilled, (state, action) => {
+        state.loading = false;
+        // Append the new client to the list
+        state.clients.push(action.payload);
+      })
+      .addCase(postClient.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
 
