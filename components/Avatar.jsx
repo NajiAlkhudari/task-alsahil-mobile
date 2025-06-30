@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
   menuText: {
     fontSize: 16,
     color: '#1769aa',
+    fontFamily : "Cairo-Regular"
   },
 });
 

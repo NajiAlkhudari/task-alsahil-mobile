@@ -10,9 +10,8 @@ import {
   ScrollView,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { postClient } from "../../store/clientSlice"; // يفترض أنك تستخدم هذا الـ action
+import { postClient } from "../../store/clientSlice"; 
 import Toast from "react-native-toast-message";
-import * as Localization from "expo-localization";
 
 const AddClient = () => {
   const dispatch = useDispatch();
@@ -91,63 +90,63 @@ const AddClient = () => {
       )}
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.inputContainer}>
-          <Text style={[styles.label, {  }]}>اسم العميل:</Text>
+          <Text style={[styles.label, {  }]}>اسم العميل</Text>
           <TextInput
             style={[styles.textInput, { textAlign }]}
             value={clientData.name}
             onChangeText={(text) =>
               setClientData({ ...clientData, name: text })
             }
-            placeholder="أدخل اسم العميل"
+            placeholder="احمد"
           />
         </View>
 
         <View style={styles.inputContainer}>
-          <Text style={[styles.label, {  }]}>اسم الشركة:</Text>
+          <Text style={[styles.label, {  }]}> الشركة</Text>
           <TextInput
             style={[styles.textInput, { textAlign }]}
             value={clientData.companyName}
             onChangeText={(text) =>
               setClientData({ ...clientData, companyName: text })
             }
-            placeholder="أدخل اسم الشركة"
+            placeholder="تريند مول"
           />
         </View>
 
         <View style={styles.inputContainer}>
-          <Text style={[styles.label, {  }]}>العنوان:</Text>
+          <Text style={[styles.label, {  }]}>العنوان</Text>
           <TextInput
             style={[styles.textInput, { textAlign }]}
             value={clientData.address}
             onChangeText={(text) =>
               setClientData({ ...clientData, address: text })
             }
-            placeholder="أدخل العنوان"
+            placeholder=" الحمرا"
           />
         </View>
 
         <View style={styles.inputContainer}>
-          <Text style={[styles.label, {  }]}>رقم الهاتف:</Text>
+          <Text style={[styles.label, {  }]}>موبايل</Text>
           <TextInput
             style={[styles.textInput, { textAlign }]}
             value={clientData.phone}
             onChangeText={(text) =>
               setClientData({ ...clientData, phone: text })
             }
-            placeholder="(اختياري) أدخل رقم الهاتف"
+            placeholder="(اختياري)"
             keyboardType="phone-pad"
           />
         </View>
 
         <View style={styles.inputContainer}>
-          <Text style={[styles.label, {  }]}>ملاحظات:</Text>
+          <Text style={[styles.label, {  }]}>ملاحظات</Text>
           <TextInput
             style={[styles.textInput, { textAlign }]}
             value={clientData.notes}
             onChangeText={(text) =>
               setClientData({ ...clientData, notes: text })
             }
-            placeholder="أضف ملاحظات (اختياري)"
+            placeholder="  (اختياري)"
             multiline={true}
           />
         </View>
@@ -160,7 +159,7 @@ const AddClient = () => {
           {loading ? (
             <ActivityIndicator size="small" color="#fff" />
           ) : (
-            <Text style={styles.addButtonText}>إضافة العميل</Text>
+            <Text style={styles.addButtonText}>إضافة </Text>
           )}
         </TouchableOpacity>
       </ScrollView>
@@ -172,41 +171,50 @@ const AddClient = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#fafafa",
   },
   container: {
     padding: 20,
-    backgroundColor: "#fff",
+    backgroundColor: "#fafafa",
+    gap: 4,
   },
   inputContainer: {
-    marginBottom: 20,
+
   },
   label: {
     fontSize: 16,
     marginBottom: 8,
     color: "#333",
-    fontWeight: "600",
-  },
+  fontFamily: 'Cairo-SemiBold',
+
+ },
   textInput: {
     height: 50,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 12,
-    backgroundColor: "#fafafa",
-    paddingHorizontal: 10,
+    borderRadius: 8,
+    backgroundColor: "#ffffff",
+            fontFamily: 'Cairo-Medium',
+            padding: 10,
+            borderWidth: 0.5,
+            borderColor: '#ccc',
+                elevation: 5,
+
+            
+
+    
   },
   addButton: {
     backgroundColor: "#024a70",
-    padding: 14,
-    borderRadius: 12,
+    padding: 12,
+    borderRadius: 8,
     alignItems: "center",
     width: "100%",
     elevation: 5,
+    marginTop:10,
   },
   addButtonText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "600",
+    color: "#ffff",
+    fontSize: 14,
+  fontFamily: 'Cairo-SemiBold',
   },
   loadingOverlay: {
     ...StyleSheet.absoluteFillObject,
@@ -219,6 +227,8 @@ const styles = StyleSheet.create({
     color: "#1769aa",
     fontSize: 18,
     textAlign: "center",
+      fontFamily: 'Cairo-Regular',
+
   },
 });
 

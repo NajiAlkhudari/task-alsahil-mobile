@@ -4,19 +4,31 @@
     "slug": "task-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/adaptive-icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "assetBundlePatterns": [
+      "assets/images/*"
+    ],
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.naji98.taskmobile",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/adaptive-icon.png"
       },
-      "package": "com.naji98.taskmobile"
+      "package": "com.naji98.taskmobile",
+      "versionCode": 1,
+      "permissions": [],
+      "enableProguardInReleaseBuilds": true,
+      "enableHermes": true
     },
     "web": {
       "bundler": "metro",
@@ -28,7 +40,8 @@
       "expo-localization"
     ],
     "experiments": {
-      "typedRoutes": true
+      "typedRoutes": true,
+      "tsconfigPaths": true
     },
     "extra": {
       "router": {

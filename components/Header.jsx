@@ -8,7 +8,7 @@ export const Header = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="#1769aa" barStyle="light-content" />
+      <StatusBar backgroundColor="#024a70" barStyle="light-content" />
       <View style={styles.headerContent}>
         <Avatar size={40} />
         <View style={styles.textContainer}>
@@ -51,15 +51,16 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 25,
     textAlign: 'right',
+    fontFamily: 'Cairo-Regular',
   },
   nameText: {
-    fontWeight: '900',
-  },
+fontFamily:'Cairo-ExtraBold' 
+ },
   subText: {
     color: '#fff',
-    fontStyle: 'italic',
     paddingTop: 8,
-    fontSize: 14,
+    fontSize: 16,
     textAlign: 'right',
+    fontFamily: 'Cairo-SemiBold',
   },
 });

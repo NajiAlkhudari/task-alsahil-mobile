@@ -5,7 +5,8 @@ import tasksReducer from './taskSlice';
 import meReducer from './meSlice';
 import visitReducer from './visitSlice'
 import reportReducer from './reportSlice'
-
+import staticsReducer from './staticsSlice'
+import dateReducer from './dateSlice'
 
 
 const store = configureStore({
@@ -16,9 +17,10 @@ const store = configureStore({
         me:meReducer,
         visits : visitReducer,
         report : reportReducer,
-
-    },
-  });
+        statics : staticsReducer,
+        dates : dateReducer,
+    }
+});
   
-  export default store;
+export default store;
   
