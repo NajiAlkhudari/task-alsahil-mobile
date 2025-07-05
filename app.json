@@ -18,13 +18,17 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.naji98.taskmobile",
-      "buildNumber": "1.0.0"
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png"
       },
       "package": "com.naji98.taskmobile",
+      "googleServicesFile": "./google-services.json",
       "versionCode": 1,
       "permissions": [],
       "enableProguardInReleaseBuilds": true,
@@ -50,6 +54,7 @@
       "eas": {
         "projectId": "7c37d2d3-b512-4562-8318-a83c453ca2d2"
       }
-    }
+    },
+    "owner": "naji98"
   }
 }

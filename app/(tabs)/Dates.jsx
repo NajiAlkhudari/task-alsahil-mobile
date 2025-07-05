@@ -95,69 +95,62 @@ const handleAmountChange = (text, visitId) => {
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         contentContainerStyle={{ padding: 20 }}
       >
-        {visits && visits.length > 0 ? (
-          visits.map((item) => (
-            <View key={item.id} style={styles.cardContainer}>
-              <View style={styles.sideLine}>
-                <Text style={styles.sideLineText}>
-                  {new Date(item.completionDate).toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </Text>
-              </View>
-              <View style={styles.cardContent}>
-<View style={styles.cardHeader}>
-  <Text style={styles.clientName}>{item.clientName}</Text>
+  {visits && visits.length > 0 ? (
+  visits.map((item) => {
+    const key = item.id ?? Math.random().toString();
+    return (
+      <View key={key} style={styles.cardContainer}>
+        <View style={styles.sideLine}>
+          <Text style={styles.sideLineText}>
+            {new Date(item.completionDate).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+            })}
+          </Text>
+        </View>
+        <View style={styles.cardContent}>
+          <View style={styles.cardHeader}>
+            <Text style={styles.clientName}>{item.clientName ?? "بدون اسم"}</Text>
+            <TouchableOpacity
+              onPress={() => handleComplete(item.id)}
+              style={styles.checkButton}
+              disabled={completingId === item.id}
+              activeOpacity={0.7}
+            >
+              {completingId === item.id ? (
+                <ActivityIndicator size="small" color="#024a70" />
+              ) : (
+                <Text style={{ fontSize: 22, color: "#024a70" }}>✔️</Text>
+              )}
+            </TouchableOpacity>
+          </View>
 
-  <TouchableOpacity
-    onPress={() => handleComplete(item.id)}
-    style={styles.checkButton}
-    disabled={completingId === item.id}
-    activeOpacity={0.7}
-  >
-    {completingId === item.id ? (
-      <ActivityIndicator size="small" color="#024a70" />
-    ) : (
-      <Text style={{ fontSize: 22, color: "#024a70" }}>✔️</Text>
-    )}
-  </TouchableOpacity>
-</View>
+          <Text style={styles.taskName}>
+            • {item.visitTasks?.[0]?.task?.taskName ?? "لا يوجد مهمة"}
+          </Text>
 
-<Text style={styles.taskName}>
-  • {item.visitTasks?.[0]?.task?.taskName ?? "لا يوجد مهمة"}
-</Text>
+          {item.priority === 2 && (
+            <Text style={styles.priorityText}>هام</Text>
+          )}
 
-{item.priority === 2 && (
-  <Text style={styles.priorityText}>هام</Text>
+          <Text style={styles.statusText}>{formatStatus(item.status)}</Text>
+
+          <TextInput
+            style={styles.amountInput}
+            placeholder="المبلغ"
+            keyboardType="numeric"
+            value={amountInput[item.id] || ""}
+            onChangeText={(text) => handleAmountChange(text, item.id)}
+            editable={completingId !== item.id}
+          />
+        </View>
+      </View>
+    );
+  })
+) : (
+  <Text style={styles.noDataText}>لا توجد زيارات قيد التنفيذ</Text>
 )}
 
-<Text style={styles.statusText}>{formatStatus(item.status)}</Text>
-
-<TextInput
-  style={[
-    styles.amountInput,
-    {
-      height: 45,
-      fontSize: 18,
-      paddingHorizontal: 16,
-      marginTop: 8,
-      minWidth: 120,
-    },
-  ]}
-  placeholder="المبلغ"
-  keyboardType="numeric"
-  value={amountInput[item.id] || ""}
-  onChangeText={(text) => handleAmountChange(text, item.id)}
-  editable={completingId !== item.id}
-/>
-
-              </View>
-            </View>
-          ))
-        ) : (
-          <Text style={styles.noDataText}>لا توجد زيارات قيد التنفيذ</Text>
-        )}
       </ScrollView>
     </SafeAreaView>
   );
